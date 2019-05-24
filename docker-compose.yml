@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:11.2-alpine
+    volumes:
+      - postgres_elixir_tryit_data:/var/lib/postgresql/data/
+  web:
+    build: .
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+
+volumes:
+  postgres_elixir_tryit_data:
